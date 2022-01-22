@@ -52,4 +52,3 @@ get_taxobox <- function(qid) {
   a <- get_taxobox_from_df(df)
   return(a)
 }
-cat(a)
