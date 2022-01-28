@@ -22,7 +22,7 @@ get_parent_taxon_df <- function(qid) {
 get_taxobox_from_df <- function(parent_taxon_df) {
   
   result <- ("{{Info/Taxonomia\n")
-  to_append <- ("| imagem                = {{#statements:P18}}\n")
+  to_append <- ("| imagem                = \n")
   
   result <- paste0(result, to_append)
   
@@ -30,6 +30,11 @@ get_taxobox_from_df <- function(parent_taxon_df) {
     rank = parent_taxon_df[i,1]
     name = parent_taxon_df[i,2]
     
+    # super-reino leads to issues in pt-wiki
+    if (rank == "super-reino" ){
+      next
+    }
+
     n_space = 22 - nchar(rank)
     to_append <- (paste0("| ", rank,
                strrep(" ",n_space),
